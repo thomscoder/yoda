@@ -4,10 +4,13 @@ import "go/token"
 
 // PackageInfo represents the information about a package.
 type PackageInfo struct {
-	Name      string                   `json:"Name"`
-	Imports   map[string]*ImportInfo   `json:"Imports,omitempty"`
-	Functions map[string]*FunctionInfo `json:"Functions,omitempty"`
-	Variables map[string]*VariableInfo `json:"Variables,omitempty"`
+	Name          string                    `json:"Name"`
+	NumberOfLines int                       `json:"NumberOfLines"`
+	Imports       map[string]*ImportInfo    `json:"Imports,omitempty"`
+	Functions     map[string]*FunctionInfo  `json:"Functions,omitempty"`
+	Variables     map[string]*VariableInfo  `json:"Variables,omitempty"`
+	Structs       map[string]*StructInfo    `json:"Structs,omitempty"`
+	Interfaces    map[string]*InterfaceInfo `json:"Interfaces,omitempty"`
 }
 
 type VariableInfo struct {
@@ -16,6 +19,27 @@ type VariableInfo struct {
 	Value   any       `json:"Value,omitempty"`
 	Keyword string    `json:"Keyword,omitempty"`
 	Where   WhereInfo `json:"Where,omitempty"`
+}
+
+type StructInfo struct {
+	Name   string                `json:"Name"`
+	Fields map[string]*FieldInfo `json:"Fields,omitempty"`
+	Where  WhereInfo             `json:"Where,omitempty"`
+}
+
+type FieldInfo struct {
+	Name string `json:"Name"`
+	Type string `json:"Type"`
+}
+
+type InterfaceInfo struct {
+	Name    string                 `json:"Name"`
+	Methods map[string]*MethodInfo `json:"Fields,omitempty"`
+	Where   WhereInfo              `json:"Where,omitempty"`
+}
+
+type MethodInfo struct {
+	Function string
 }
 
 // ImportInfo represents the information about an imported package.
