@@ -4,13 +4,14 @@ import "go/token"
 
 // PackageInfo represents the information about a package.
 type PackageInfo struct {
-	Name          string                    `json:"Name"`
-	NumberOfLines int                       `json:"NumberOfLines"`
-	Imports       map[string]*ImportInfo    `json:"Imports,omitempty"`
-	Functions     map[string]*FunctionInfo  `json:"Functions,omitempty"`
-	Variables     map[string]*VariableInfo  `json:"Variables,omitempty"`
-	Structs       map[string]*StructInfo    `json:"Structs,omitempty"`
-	Interfaces    map[string]*InterfaceInfo `json:"Interfaces,omitempty"`
+	Name                      string                    `json:"Name"`
+	NumberOfLines             int                       `json:"NumberOfLines"`
+	Imports                   map[string]*ImportInfo    `json:"Imports,omitempty"`
+	Variables                 map[string]*VariableInfo  `json:"Variables,omitempty"`
+	Functions                 map[string]*FunctionInfo  `json:"Functions,omitempty"`
+	Structs                   map[string]*StructInfo    `json:"Structs,omitempty"`
+	Interfaces                map[string]*InterfaceInfo `json:"Interfaces,omitempty"`
+	InvertedFunctionCallGraph map[string][]string       `json:"InvertedFunctionCallGraph,omitempty"`
 }
 
 type VariableInfo struct {
@@ -48,7 +49,7 @@ type ImportInfo struct {
 	Path     string          `json:"Path"`
 	Size     int             `json:"Size,omitempty"`
 	Funcs    map[string]bool `json:"Funcs,omitempty"`
-	AllFuncs map[string]bool `json:"AllFuncs,omitempty"` // NEW
+	AllFuncs map[string]bool `json:"AllFuncs,omitempty"`
 	Complete bool            `json:"Complete,omitempty"`
 }
 
@@ -57,13 +58,14 @@ type FunctionInfo struct {
 	Name       string                   `json:"Name"`
 	Doc        string                   `json:"Doc,omitempty"`
 	Calls      map[string]*FunctionInfo `json:"Calls,omitempty"`
-	Args       []string                 `json:"Args,omitempty"`    // NEW
-	Returns    []string                 `json:"Returns,omitempty"` // NEW
+	Args       []string                 `json:"Args,omitempty"`
+	Returns    []string                 `json:"Returns,omitempty"`
 	Complexity string                   `json:"Complexity,omitempty"`
 	Pos        token.Pos                `json:"Pos,omitempty"`
 	Where      WhereInfo                `json:"Where,omitempty"`
 	ImportPath string                   `json:"ImportPath,omitempty"`
 	Complete   bool                     `json:"Complete,omitempty"`
+	CalledBy   []string                 `json:"CalledBy,omitempty"`
 }
 
 type WhereInfo struct {

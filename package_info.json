@@ -1,505 +1,168 @@
 {
-    "Name": "bytes",
-    "NumberOfLines": 477,
+    "Name": "example",
+    "NumberOfLines": 42,
     "Imports": {
-        "errors": {
-            "Name": "errors",
-            "Path": "errors",
-            "Size": 12693
+        "fmt": {
+            "Name": "fmt",
+            "Path": "fmt",
+            "Size": 212331
         },
-        "io": {
-            "Name": "io",
-            "Path": "io",
-            "Size": 123322
+        "texts": {
+            "Name": "texts",
+            "Path": "yoda/example/texts",
+            "Size": 63
+        }
+    },
+    "Variables": {
+        "EXAMPLE": {
+            "Name": "EXAMPLE",
+            "Type": "string",
+            "Value": "\"mama\"",
+            "Keyword": "var",
+            "Where": {
+                "File": "example/example.go",
+                "Line": 8
+            }
         },
-        "utf8": {
-            "Name": "utf8",
-            "Path": "unicode/utf8",
-            "Size": 37091
+        "EXAMPLE_1": {
+            "Name": "EXAMPLE_1",
+            "Type": "",
+            "Value": "\"example 1\"",
+            "Keyword": "const",
+            "Where": {
+                "File": "example/example.go",
+                "Line": 10
+            }
+        },
+        "EXAMPLE_2": {
+            "Name": "EXAMPLE_2",
+            "Type": "",
+            "Value": "\"example 2\"",
+            "Keyword": "const",
+            "Where": {
+                "File": "example/example.go",
+                "Line": 11
+            }
         }
     },
     "Functions": {
-        "Bytes": {
-            "Name": "Bytes",
-            "Doc": "Bytes returns a slice of length b.Len() holding the unread portion of the buffer.\nThe slice is valid for use only until the next buffer modification (that is,\nonly until the next call to a method like Read, Write, Reset, or Truncate).\nThe slice aliases the buffer content at least until the next buffer modification,\nso immediate changes to the slice will affect the result of future reads.\n",
-            "Returns": [
-                ""
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 2165,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 58
-            }
-        },
-        "Cap": {
-            "Name": "Cap",
-            "Doc": "Cap returns the capacity of the buffer's underlying byte slice, that is, the\ntotal space allocated for the buffer's data.\n",
+        "example": {
+            "Name": "example",
+            "Doc": "This is an example\n",
             "Calls": {
-                "cap": {
-                    "Name": "cap",
+                "Println": {
+                    "Name": "Println",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 81
-                    }
-                }
-            },
-            "Returns": [
-                "int"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 2990,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 81
-            }
-        },
-        "Grow": {
-            "Name": "Grow",
-            "Doc": "Grow grows the buffer's capacity, if necessary, to guarantee space for\nanother n bytes. After Grow(n), at least n bytes can be written to the\nbuffer without another allocation.\nIf n is negative, Grow will panic.\nIf the buffer can't grow it will panic with ErrTooLarge.\n",
-            "Calls": {
-                "grow": {
-                    "Name": "grow",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 163
+                        "Line": 20
                     },
-                    "ImportPath": "b"
+                    "ImportPath": "fmt"
                 },
-                "panic": {
-                    "Name": "panic",
+                "text": {
+                    "Name": "text",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 161
+                        "Line": 21
                     }
                 }
             },
-            "Args": [
-                "n"
-            ],
             "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 5342,
+            "Pos": 221,
             "Where": {
                 "File": "example/example.go",
-                "Line": 159
-            }
+                "Line": 19
+            },
+            "CalledBy": [
+                "text2",
+                "text1"
+            ]
         },
-        "Len": {
-            "Name": "Len",
-            "Doc": "Len returns the number of bytes of the unread portion of the buffer;\nb.Len() == len(b.Bytes()).\n",
+        "text": {
+            "Name": "text",
+            "Doc": "This is text function\n",
             "Calls": {
-                "len": {
-                    "Name": "len",
+                "GetText": {
+                    "Name": "GetText",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 77
-                    }
-                }
-            },
-            "Returns": [
-                "int"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 2804,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 77
-            }
-        },
-        "NewBuffer": {
-            "Name": "NewBuffer",
-            "Doc": "NewBuffer creates and initializes a new Buffer using buf as its\ninitial contents. The new Buffer takes ownership of buf, and the\ncaller should not use buf after this call. NewBuffer is intended to\nprepare a Buffer to read existing data. It can also be used to set\nthe initial size of the internal buffer for writing. To do that,\nbuf should have the desired capacity but a length of zero.\n\nIn most cases, new(Buffer) (or just declaring a Buffer variable) is\nsufficient to initialize a Buffer.\n",
-            "Args": [
-                "buf"
-            ],
-            "Returns": [
-                "Buffer"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 15114,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 467
-            }
-        },
-        "NewBufferString": {
-            "Name": "NewBufferString",
-            "Doc": "NewBufferString creates and initializes a new Buffer using string s as its\ninitial contents. It is intended to prepare a buffer to read an existing\nstring.\n\nIn most cases, new(Buffer) (or just declaring a Buffer variable) is\nsufficient to initialize a Buffer.\n",
-            "Calls": {
-                "": {
-                    "Name": "",
-                    "Where": {
-                        "File": "",
-                        "Line": 0
-                    }
-                }
-            },
-            "Args": [
-                "s"
-            ],
-            "Returns": [
-                "Buffer"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 15456,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 475
-            }
-        },
-        "Next": {
-            "Name": "Next",
-            "Doc": "Next returns a slice containing the next n bytes from the buffer,\nadvancing the buffer as if the bytes had been returned by Read.\nIf there are fewer than n bytes in the buffer, Next returns the entire buffer.\nThe slice is only valid until the next call to a read or write method.\n",
-            "Calls": {
-                "Len": {
-                    "Name": "Len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 337
+                        "Line": 31
                     },
-                    "ImportPath": "b"
-                }
-            },
-            "Args": [
-                "n"
-            ],
-            "Returns": [
-                ""
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 10886,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 335
-            }
-        },
-        "Read": {
-            "Name": "Read",
-            "Doc": "Read reads the next len(p) bytes from the buffer or until the buffer\nis drained. The return value n is the number of bytes read. If the\nbuffer has no data to return, err is io.EOF (unless len(p) is zero);\notherwise it is nil.\n",
-            "Calls": {
-                "EOF": {
-                    "Name": "EOF",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 321
-                    },
-                    "ImportPath": "io"
+                    "ImportPath": "texts"
                 },
-                "Reset": {
-                    "Name": "Reset",
+                "Println": {
+                    "Name": "Println",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 317
+                        "Line": 28
                     },
-                    "ImportPath": "b"
-                },
-                "copy": {
-                    "Name": "copy",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 323
-                    }
-                },
-                "empty": {
-                    "Name": "empty",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 315
-                    },
-                    "ImportPath": "b"
+                    "ImportPath": "fmt"
                 },
                 "len": {
                     "Name": "len",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 318
+                        "Line": 27
                     }
                 }
             },
             "Args": [
-                "p"
+                "str"
             ],
             "Returns": [
-                "int",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 10286,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 313
-            }
-        },
-        "ReadByte": {
-            "Name": "ReadByte",
-            "Doc": "ReadByte reads and returns the next byte from the buffer.\nIf no byte is available, it returns error io.EOF.\n",
-            "Calls": {
-                "EOF": {
-                    "Name": "EOF",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 355
-                    },
-                    "ImportPath": "io"
-                },
-                "Reset": {
-                    "Name": "Reset",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 354
-                    },
-                    "ImportPath": "b"
-                },
-                "empty": {
-                    "Name": "empty",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 352
-                    },
-                    "ImportPath": "b"
-                }
-            },
-            "Returns": [
-                "byte",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 11196,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 351
-            }
-        },
-        "ReadBytes": {
-            "Name": "ReadBytes",
-            "Doc": "ReadBytes reads until the first occurrence of delim in the input,\nreturning a slice containing the data up to and including the delimiter.\nIf ReadBytes encounters an error before finding a delimiter,\nit returns the data read before the error and the error itself (often io.EOF).\nReadBytes returns err != nil if and only if the returned data does not end in\ndelim.\n",
-            "Calls": {
-                "append": {
-                    "Name": "append",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 429
-                    }
-                },
-                "readSlice": {
-                    "Name": "readSlice",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 426
-                    },
-                    "ImportPath": "b"
-                }
-            },
-            "Args": [
-                "delim"
-            ],
-            "Returns": [
-                "",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 13498,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 425
-            }
-        },
-        "ReadFrom": {
-            "Name": "ReadFrom",
-            "Doc": "ReadFrom reads data from r until EOF and appends it to the buffer, growing\nthe buffer as needed. The return value n is the number of bytes read. Any\nerror except io.EOF encountered during the read is also returned. If the\nbuffer becomes too large, ReadFrom will panic with ErrTooLarge.\n",
-            "Calls": {
-                "EOF": {
-                    "Name": "EOF",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 213
-                    },
-                    "ImportPath": "io"
-                },
-                "Read": {
-                    "Name": "Read",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 206
-                    },
-                    "ImportPath": "r"
-                },
-                "Reader": {
-                    "Name": "Reader",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 201
-                    },
-                    "ImportPath": "io"
-                },
-                "cap": {
-                    "Name": "cap",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 206
-                    }
-                },
-                "grow": {
-                    "Name": "grow",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 204
-                    },
-                    "ImportPath": "b"
-                },
-                "int64": {
-                    "Name": "int64",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 212
-                    }
-                },
-                "panic": {
-                    "Name": "panic",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 208
-                    }
-                }
-            },
-            "Args": [
-                "r"
-            ],
-            "Returns": [
-                "int64",
-                "error"
+                "string"
             ],
             "Complexity": "1 (0 branches, 1 loops)",
-            "Pos": 6834,
+            "Pos": 311,
             "Where": {
                 "File": "example/example.go",
-                "Line": 201
-            }
+                "Line": 25
+            },
+            "CalledBy": [
+                "example"
+            ]
         },
-        "ReadRune": {
-            "Name": "ReadRune",
-            "Doc": "ReadRune reads and returns the next UTF-8-encoded\nUnicode code point from the buffer.\nIf no bytes are available, the error returned is io.EOF.\nIf the bytes are an erroneous UTF-8 encoding, it\nconsumes one byte and returns U+FFFD, 1.\n",
+        "text1": {
+            "Name": "text1",
             "Calls": {
-                "DecodeRune": {
-                    "Name": "DecodeRune",
+                "example": {
+                    "Name": "example",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 380
-                    },
-                    "ImportPath": "utf8"
-                },
-                "EOF": {
-                    "Name": "EOF",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 372
-                    },
-                    "ImportPath": "io"
-                },
-                "Reset": {
-                    "Name": "Reset",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 371
-                    },
-                    "ImportPath": "b"
-                },
-                "RuneSelf": {
-                    "Name": "RuneSelf",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 375
-                    },
-                    "ImportPath": "utf8"
-                },
-                "empty": {
-                    "Name": "empty",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 369
-                    },
-                    "ImportPath": "b"
-                },
-                "readOp": {
-                    "Name": "readOp",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 382
-                    }
-                },
-                "rune": {
-                    "Name": "rune",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 378
+                        "Line": 41
                     }
                 }
             },
-            "Returns": [
-                "rune",
-                "int",
-                "error"
-            ],
             "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 11651,
+            "Pos": 525,
             "Where": {
                 "File": "example/example.go",
-                "Line": 368
+                "Line": 40
             }
         },
-        "ReadString": {
-            "Name": "ReadString",
-            "Doc": "ReadString reads until the first occurrence of delim in the input,\nreturning a string containing the data up to and including the delimiter.\nIf ReadString encounters an error before finding a delimiter,\nit returns the data read before the error and the error itself (often io.EOF).\nReadString returns err != nil if and only if the returned data does not end\nin delim.\n",
+        "text2": {
+            "Name": "text2",
+            "Doc": "this is text2 function\n",
             "Calls": {
-                "readSlice": {
-                    "Name": "readSlice",
+                "GetText": {
+                    "Name": "GetText",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 454
+                        "Line": 37
                     },
-                    "ImportPath": "b"
+                    "ImportPath": "texts"
                 },
-                "string": {
-                    "Name": "string",
+                "example": {
+                    "Name": "example",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 455
+                        "Line": 36
                     }
-                }
-            },
-            "Args": [
-                "delim"
-            ],
-            "Returns": [
-                "string",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 14465,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 453
-            }
-        },
-        "Reset": {
-            "Name": "Reset",
-            "Doc": "Reset resets the buffer to be empty,\nbut it retains the underlying storage for use by future writes.\nReset is the same as Truncate(0).\n",
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 3581,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 101
-            }
-        },
-        "String": {
-            "Name": "String",
-            "Doc": "String returns the contents of the unread portion of the buffer\nas a string. If the Buffer is a nil pointer, it returns \"\u003cnil\u003e\".\n\nTo build strings more efficiently, see the strings.Builder type.\n",
-            "Calls": {
-                "string": {
-                    "Name": "string",
+                },
+                "example2": {
+                    "Name": "example2",
                     "Where": {
                         "File": "example/example.go",
-                        "Line": 69
+                        "Line": 37
                     }
                 }
             },
@@ -507,741 +170,29 @@
                 "string"
             ],
             "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 2429,
+            "Pos": 455,
             "Where": {
                 "File": "example/example.go",
-                "Line": 64
-            }
-        },
-        "Truncate": {
-            "Name": "Truncate",
-            "Doc": "Truncate discards all but the first n unread bytes from the buffer\nbut continues to use the same allocated storage.\nIt panics if n is negative or greater than the length of the buffer.\n",
-            "Calls": {
-                "Len": {
-                    "Name": "Len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 92
-                    },
-                    "ImportPath": "b"
-                },
-                "Reset": {
-                    "Name": "Reset",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 88
-                    },
-                    "ImportPath": "b"
-                },
-                "panic": {
-                    "Name": "panic",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 93
-                    }
-                }
-            },
-            "Args": [
-                "n"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 3234,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 86
-            }
-        },
-        "UnreadByte": {
-            "Name": "UnreadByte",
-            "Doc": "UnreadByte unreads the last byte returned by the most recent successful\nread operation that read at least one byte. If a write has happened since\nthe last read, if the last read returned an error, or if the read read zero\nbytes, UnreadByte returns an error.\n",
-            "Returns": [
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 12954,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 408
-            }
-        },
-        "UnreadRune": {
-            "Name": "UnreadRune",
-            "Doc": "UnreadRune unreads the last rune returned by ReadRune.\nIf the most recent read or write operation on the buffer was\nnot a successful ReadRune, UnreadRune returns an error.  (In this regard\nit is stricter than UnreadByte, which will unread the last byte\nfrom any read operation.)\n",
-            "Calls": {
-                "New": {
-                    "Name": "New",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 393
-                    },
-                    "ImportPath": "errors"
-                },
-                "int": {
-                    "Name": "int",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 396
-                    }
-                }
-            },
-            "Returns": [
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 12309,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 391
-            }
-        },
-        "Write": {
-            "Name": "Write",
-            "Doc": "Write appends the contents of p to the buffer, growing the buffer as\nneeded. The return value n is the length of p; err is always nil. If the\nbuffer becomes too large, Write will panic with ErrTooLarge.\n",
-            "Calls": {
-                "copy": {
-                    "Name": "copy",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 176
-                    }
-                },
-                "grow": {
-                    "Name": "grow",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 174
-                    },
-                    "ImportPath": "b"
-                },
-                "len": {
-                    "Name": "len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 174
-                    }
-                },
-                "tryGrowByReslice": {
-                    "Name": "tryGrowByReslice",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 172
-                    },
-                    "ImportPath": "b"
-                }
-            },
-            "Args": [
-                "p"
-            ],
-            "Returns": [
-                "int",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 5683,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 170
-            }
-        },
-        "WriteByte": {
-            "Name": "WriteByte",
-            "Doc": "WriteByte appends the byte c to the buffer, growing the buffer as needed.\nThe returned error is always nil, but is included to match bufio.Writer's\nWriteByte. If the buffer becomes too large, WriteByte will panic with\nErrTooLarge.\n",
-            "Calls": {
-                "grow": {
-                    "Name": "grow",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 284
-                    },
-                    "ImportPath": "b"
-                },
-                "tryGrowByReslice": {
-                    "Name": "tryGrowByReslice",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 282
-                    },
-                    "ImportPath": "b"
-                }
-            },
-            "Args": [
-                "c"
-            ],
-            "Returns": [
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 9239,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 280
-            }
-        },
-        "WriteRune": {
-            "Name": "WriteRune",
-            "Doc": "WriteRune appends the UTF-8 encoding of Unicode code point r to the\nbuffer, returning its length and an error, which is always nil but is\nincluded to match bufio.Writer's WriteRune. The buffer is grown as needed;\nif it becomes too large, WriteRune will panic with ErrTooLarge.\n",
-            "Calls": {
-                "AppendRune": {
-                    "Name": "AppendRune",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 305
-                    },
-                    "ImportPath": "utf8"
-                },
-                "RuneSelf": {
-                    "Name": "RuneSelf",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 296
-                    },
-                    "ImportPath": "utf8"
-                },
-                "UTFMax": {
-                    "Name": "UTFMax",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 303
-                    },
-                    "ImportPath": "utf8"
-                },
-                "WriteByte": {
-                    "Name": "WriteByte",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 297
-                    },
-                    "ImportPath": "b"
-                },
-                "byte": {
-                    "Name": "byte",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 297
-                    }
-                },
-                "grow": {
-                    "Name": "grow",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 303
-                    },
-                    "ImportPath": "b"
-                },
-                "len": {
-                    "Name": "len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 306
-                    }
-                },
-                "tryGrowByReslice": {
-                    "Name": "tryGrowByReslice",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 301
-                    },
-                    "ImportPath": "b"
-                },
-                "uint32": {
-                    "Name": "uint32",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 296
-                    }
-                }
-            },
-            "Args": [
-                "r"
-            ],
-            "Returns": [
-                "int",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 9685,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 294
-            }
-        },
-        "WriteString": {
-            "Name": "WriteString",
-            "Doc": "WriteString appends the contents of s to the buffer, growing the buffer as\nneeded. The return value n is the length of s; err is always nil. If the\nbuffer becomes too large, WriteString will panic with ErrTooLarge.\n",
-            "Calls": {
-                "copy": {
-                    "Name": "copy",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 188
-                    }
-                },
-                "grow": {
-                    "Name": "grow",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 186
-                    },
-                    "ImportPath": "b"
-                },
-                "len": {
-                    "Name": "len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 186
-                    }
-                },
-                "tryGrowByReslice": {
-                    "Name": "tryGrowByReslice",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 184
-                    },
-                    "ImportPath": "b"
-                }
-            },
-            "Args": [
-                "s"
-            ],
-            "Returns": [
-                "int",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 6091,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 182
-            }
-        },
-        "WriteTo": {
-            "Name": "WriteTo",
-            "Doc": "WriteTo writes data to w until the buffer is drained or an error occurs.\nThe return value n is the number of bytes written; it always fits into an\nint, but it is int64 to match the io.WriterTo interface. Any error\nencountered during the write is also returned.\n",
-            "Calls": {
-                "ErrShortWrite": {
-                    "Name": "ErrShortWrite",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 268
-                    },
-                    "ImportPath": "io"
-                },
-                "Len": {
-                    "Name": "Len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 255
-                    },
-                    "ImportPath": "b"
-                },
-                "Reset": {
-                    "Name": "Reset",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 272
-                    },
-                    "ImportPath": "b"
-                },
-                "Write": {
-                    "Name": "Write",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 256
-                    },
-                    "ImportPath": "w"
-                },
-                "Writer": {
-                    "Name": "Writer",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 253
-                    },
-                    "ImportPath": "io"
-                },
-                "int64": {
-                    "Name": "int64",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 261
-                    }
-                },
-                "panic": {
-                    "Name": "panic",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 258
-                    }
-                }
-            },
-            "Args": [
-                "w"
-            ],
-            "Returns": [
-                "int64",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 8497,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 253
-            }
-        },
-        "empty": {
-            "Name": "empty",
-            "Doc": "empty reports whether the unread portion of the buffer is empty.\n",
-            "Calls": {
-                "len": {
-                    "Name": "len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 73
-                    }
-                }
-            },
-            "Returns": [
-                "bool"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 2640,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 73
-            }
-        },
-        "grow": {
-            "Name": "grow",
-            "Doc": "grow grows the buffer to guarantee space for n more bytes.\nIt returns the index where bytes should be written.\nIf the buffer can't grow it will panic with ErrTooLarge.\n",
-            "Calls": {
-                "Len": {
-                    "Name": "Len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 122
-                    },
-                    "ImportPath": "b"
-                },
-                "Reset": {
-                    "Name": "Reset",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 125
-                    },
-                    "ImportPath": "b"
-                },
-                "cap": {
-                    "Name": "cap",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 135
-                    }
-                },
-                "copy": {
-                    "Name": "copy",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 141
-                    }
-                },
-                "growSlice": {
-                    "Name": "growSlice",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 146
-                    }
-                },
-                "make": {
-                    "Name": "make",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 132
-                    }
-                },
-                "panic": {
-                    "Name": "panic",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 143
-                    }
-                },
-                "tryGrowByReslice": {
-                    "Name": "tryGrowByReslice",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 128
-                    },
-                    "ImportPath": "b"
-                }
-            },
-            "Args": [
-                "n"
-            ],
-            "Returns": [
-                "int"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 4206,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 121
-            }
-        },
-        "growSlice": {
-            "Name": "growSlice",
-            "Doc": "growSlice grows b by n, preserving the original content of b.\nIf the allocation fails, it panics with ErrTooLarge.\n",
-            "Calls": {
-                "": {
-                    "Name": "",
-                    "Where": {
-                        "File": "",
-                        "Line": 0
-                    }
-                },
-                "append": {
-                    "Name": "append",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 244
-                    }
-                },
-                "cap": {
-                    "Name": "cap",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 242
-                    }
-                },
-                "copy": {
-                    "Name": "copy",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 245
-                    }
-                },
-                "len": {
-                    "Name": "len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 246
-                    }
-                },
-                "make": {
-                    "Name": "make",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 244
-                    }
-                },
-                "panic": {
-                    "Name": "panic",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 227
-                    }
-                },
-                "recover": {
-                    "Name": "recover",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 226
-                    }
-                }
-            },
-            "Args": [
-                "b",
-                "n"
-            ],
-            "Returns": [
-                ""
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 7330,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 224
-            }
-        },
-        "readSlice": {
-            "Name": "readSlice",
-            "Doc": "readSlice is like ReadBytes but returns a reference to internal buffer data.\n",
-            "Calls": {
-                "EOF": {
-                    "Name": "EOF",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 439
-                    },
-                    "ImportPath": "io"
-                },
-                "IndexByte": {
-                    "Name": "IndexByte",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 435
-                    }
-                },
-                "len": {
-                    "Name": "len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 438
-                    }
-                }
-            },
-            "Args": [
-                "delim"
-            ],
-            "Returns": [
-                "",
-                "error"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 13824,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 434
-            }
-        },
-        "tryGrowByReslice": {
-            "Name": "tryGrowByReslice",
-            "Doc": "tryGrowByReslice is a inlineable version of grow for the fast-case where the\ninternal buffer only needs to be resliced.\nIt returns the index where bytes should be written and whether it succeeded.\n",
-            "Calls": {
-                "cap": {
-                    "Name": "cap",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 111
-                    }
-                },
-                "len": {
-                    "Name": "len",
-                    "Where": {
-                        "File": "example/example.go",
-                        "Line": 111
-                    }
-                }
-            },
-            "Args": [
-                "n"
-            ],
-            "Returns": [
-                "int",
-                "bool"
-            ],
-            "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 3871,
-            "Where": {
-                "File": "example/example.go",
-                "Line": 110
-            }
-        }
-    },
-    "Variables": {
-        "ErrTooLarge": {
-            "Name": "ErrTooLarge",
-            "Type": "",
-            "Value": "",
-            "Keyword": "var",
-            "Where": {
-                "File": "example/example.go",
-                "Line": 48
-            }
-        },
-        "MinRead": {
-            "Name": "MinRead",
-            "Type": "",
-            "Value": "",
-            "Keyword": "const",
-            "Where": {
-                "File": "example/example.go",
-                "Line": 195
-            }
-        },
-        "errNegativeRead": {
-            "Name": "errNegativeRead",
-            "Type": "",
-            "Value": "",
-            "Keyword": "var",
-            "Where": {
-                "File": "example/example.go",
-                "Line": 49
-            }
-        },
-        "errUnreadByte": {
-            "Name": "errUnreadByte",
-            "Type": "",
-            "Value": "",
-            "Keyword": "var",
-            "Where": {
-                "File": "example/example.go",
-                "Line": 402
-            }
-        },
-        "maxInt": {
-            "Name": "maxInt",
-            "Type": "",
-            "Value": "",
-            "Keyword": "const",
-            "Where": {
-                "File": "example/example.go",
-                "Line": 51
-            }
-        },
-        "opRead": {
-            "Name": "opRead",
-            "Type": "readOp",
-            "Value": "",
-            "Keyword": "const",
-            "Where": {
-                "File": "example/example.go",
-                "Line": 38
-            }
-        },
-        "smallBufferSize": {
-            "Name": "smallBufferSize",
-            "Type": "",
-            "Value": "",
-            "Keyword": "const",
-            "Where": {
-                "File": "example/example.go",
-                "Line": 16
+                "Line": 35
             }
         }
     },
     "Structs": {
-        "Buffer": {
-            "Name": "Buffer",
+        "mama": {
+            "Name": "mama",
             "Fields": {
-                "buf": {
-                    "Name": "buf",
-                    "Type": "[]byte"
+                "Name": {
+                    "Name": "Name",
+                    "Type": "string"
                 },
-                "lastRead": {
-                    "Name": "lastRead",
-                    "Type": "readOp"
-                },
-                "off": {
-                    "Name": "off",
-                    "Type": "int"
+                "Value": {
+                    "Name": "Value",
+                    "Type": "string"
                 }
             },
             "Where": {
                 "File": "example/example.go",
-                "Line": 20
-            }
-        }
-    },
-    "Interfaces": {
-        "Mama": {
-            "Name": "Mama",
-            "Fields": {
-                "CreateStore": {
-                    "Function": "func(string)"
-                }
-            },
-            "Where": {
-                "File": "example/example.go",
-                "Line": 26
+                "Line": 13
             }
         }
     }
