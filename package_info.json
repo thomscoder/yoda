@@ -34,7 +34,7 @@
                 }
             },
             "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 158,
+            "Pos": 171,
             "Where": {
                 "File": "example/example.go",
                 "Line": 14
@@ -75,7 +75,7 @@
                 "string"
             ],
             "Complexity": "1 (0 branches, 1 loops)",
-            "Pos": 248,
+            "Pos": 261,
             "Where": {
                 "File": "example/example.go",
                 "Line": 20
@@ -105,7 +105,7 @@
                 "string"
             ],
             "Complexity": "0 (0 branches, 0 loops)",
-            "Pos": 392,
+            "Pos": 405,
             "Where": {
                 "File": "example/example.go",
                 "Line": 30
@@ -113,7 +113,35 @@
         }
     },
     "Variables": {
-        "ConstDeclarations": 2,
-        "VarDeclarations": 1
+        "EXAMPLE": {
+            "Name": "EXAMPLE",
+            "Type": "string",
+            "Value": "\"mama\"",
+            "Keyword": "var",
+            "Where": {
+                "File": "example/example.go",
+                "Line": 8
+            }
+        },
+        "EXAMPLE_1": {
+            "Name": "EXAMPLE_1",
+            "Type": "",
+            "Value": "\"example 1\"",
+            "Keyword": "const",
+            "Where": {
+                "File": "example/example.go",
+                "Line": 10
+            }
+        },
+        "EXAMPLE_2": {
+            "Name": "EXAMPLE_2",
+            "Type": "",
+            "Value": "\"example 2\"",
+            "Keyword": "const",
+            "Where": {
+                "File": "example/example.go",
+                "Line": 11
+            }
+        }
     }
 }

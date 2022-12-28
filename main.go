@@ -11,6 +11,5 @@ func main() {
 		panic(err)
 	}
 
-	output.PrintPackageInfo(packageInfo)
 	output.CreateJSON(packageInfo)
 }

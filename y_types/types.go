@@ -1,4 +1,4 @@
-package types
+package y_types
 
 import "go/token"
 
@@ -7,13 +7,15 @@ type PackageInfo struct {
 	Name      string                   `json:"Name"`
 	Imports   map[string]*ImportInfo   `json:"Imports,omitempty"`
 	Functions map[string]*FunctionInfo `json:"Functions,omitempty"`
-	Variables *VariableInfo            `json:"Variables,omitempty"`
+	Variables map[string]*VariableInfo `json:"Variables,omitempty"`
 }
 
 type VariableInfo struct {
-	ConstDeclarations int `json:"ConstDeclarations,omitempty"`
-	VarDeclarations   int `json:"VarDeclarations,omitempty"`
-	Initializations   int `json:"Initializations,omitempty"`
+	Name    string    `json:"Name"`
+	Type    string    `json:"Type"`
+	Value   any       `json:"Value,omitempty"`
+	Keyword string    `json:"Keyword,omitempty"`
+	Where   WhereInfo `json:"Where,omitempty"`
 }
 
 // ImportInfo represents the information about an imported package.

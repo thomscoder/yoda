@@ -1,28 +1,31 @@
 package src
 
 import (
+	"bytes"
 	"fmt"
 	"go/ast"
 	"go/build"
 	"go/parser"
+	"go/printer"
 	"go/token"
+
 	"path"
 	"strconv"
-	"yoda/types"
+	"yoda/y_types"
 )
 
-func GetPackageInfo(filename string) (*types.PackageInfo, error) {
+func GetPackageInfo(filename string) (*y_types.PackageInfo, error) {
 	fset := token.NewFileSet()
 	f, err := parser.ParseFile(fset, filename, nil, parser.ParseComments)
 	if err != nil {
 		return nil, err
 	}
 
-	p := &types.PackageInfo{
+	p := &y_types.PackageInfo{
 		Name:      f.Name.Name,
-		Imports:   make(map[string]*types.ImportInfo),
-		Functions: make(map[string]*types.FunctionInfo),
-		Variables: &types.VariableInfo{},
+		Imports:   make(map[string]*y_types.ImportInfo),
+		Functions: make(map[string]*y_types.FunctionInfo),
+		Variables: make(map[string]*y_types.VariableInfo),
 	}
 
 	// Add imported packages to PackageInfo.
@@ -46,7 +49,7 @@ func GetPackageInfo(filename string) (*types.PackageInfo, error) {
 			fmt.Printf("Error getting size of package directory %s: %v\n", pkg.Dir, err)
 			return nil, err
 		}
-		p.Imports[importName] = &types.ImportInfo{
+		p.Imports[importName] = &y_types.ImportInfo{
 			Name:     importName,
 			Path:     importPath,
 			Size:     size,
@@ -67,19 +70,43 @@ func GetPackageInfo(filename string) (*types.PackageInfo, error) {
 	ast.Inspect(f, func(node ast.Node) bool {
 		// Find variables
 		if genDecl, ok := node.(*ast.GenDecl); ok && (genDecl.Tok == token.CONST || genDecl.Tok == token.VAR) {
-			// VAR
-			if genDecl.Tok == token.VAR {
+			if spec, ok := genDecl.Specs[0].(*ast.ValueSpec); ok {
 
-				if spec, ok := genDecl.Specs[0].(*ast.ValueSpec); ok {
-					if spec.Values == nil {
-						p.Variables.VarDeclarations = p.Variables.VarDeclarations + 1
+				for idx, name := range spec.Names {
+					// Extract the value of the variable
+					var value, typeName string
+					if spec.Values != nil && len(spec.Values) > idx {
+						if lit, ok := spec.Values[idx].(*ast.BasicLit); ok && lit.Kind == token.STRING {
+							value = lit.Value
+						}
+					}
+
+					if spec.Type != nil {
+						var buf bytes.Buffer
+						if err := printer.Fprint(&buf, token.NewFileSet(), spec.Type); err != nil {
+							panic(err)
+						} else {
+							typeName = buf.String()
+						}
 					} else {
-						p.Variables.Initializations = p.Variables.Initializations + 1
+						typeName = ""
+					}
+
+					pos := genDecl.Pos()
+					posInfo := fset.Position(pos)
+
+					p.Variables[name.Name] = &y_types.VariableInfo{
+						Name:    name.Name,
+						Value:   value,
+						Type:    typeName,
+						Keyword: genDecl.Tok.String(),
+						Where: y_types.WhereInfo{
+							File: posInfo.Filename,
+							Line: posInfo.Line,
+						},
 					}
 				}
-			} else {
-				// CONST
-				p.Variables.ConstDeclarations = p.Variables.ConstDeclarations + 1
+
 			}
 		}
 
@@ -87,14 +114,14 @@ func GetPackageInfo(filename string) (*types.PackageInfo, error) {
 		fn, ok := node.(*ast.FuncDecl)
 		if ok {
 			// Add the function to the PackageInfo.
-			p.Functions[fn.Name.Name] = &types.FunctionInfo{
+			p.Functions[fn.Name.Name] = &y_types.FunctionInfo{
 				Name:       fn.Name.Name,
 				Doc:        fn.Doc.Text(),
-				Calls:      make(map[string]*types.FunctionInfo),
+				Calls:      make(map[string]*y_types.FunctionInfo),
 				Args:       []string{},
 				Returns:    []string{},
 				Pos:        fn.Pos(),
-				Where:      types.WhereInfo{},
+				Where:      y_types.WhereInfo{},
 				Complexity: "",
 				ImportPath: "",
 				Complete:   false,
@@ -154,11 +181,11 @@ func GetPackageInfo(filename string) (*types.PackageInfo, error) {
 					}
 
 					posInfo := fset.Position(pos)
-					// Add the function call to the types.FunctionInfo.
-					p.Functions[fn.Name.Name].Calls[funcName] = &types.FunctionInfo{
+					// Add the function call to the y_types.FunctionInfo.
+					p.Functions[fn.Name.Name].Calls[funcName] = &y_types.FunctionInfo{
 						Name:       funcName,
 						ImportPath: importPath,
-						Where: types.WhereInfo{
+						Where: y_types.WhereInfo{
 							File: posInfo.Filename,
 							Line: posInfo.Line,
 						},
@@ -175,10 +202,10 @@ func GetPackageInfo(filename string) (*types.PackageInfo, error) {
 						posInfo := fset.Position(pos)
 
 						if _, ok := p.Imports[importPath]; ok {
-							p.Functions[fn.Name.Name].Calls[funcName] = &types.FunctionInfo{
+							p.Functions[fn.Name.Name].Calls[funcName] = &y_types.FunctionInfo{
 								Name:       funcName,
 								ImportPath: importPath,
-								Where: types.WhereInfo{
+								Where: y_types.WhereInfo{
 									File: posInfo.Filename,
 									Line: posInfo.Line,
 								},

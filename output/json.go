@@ -4,10 +4,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"yoda/types"
+	"yoda/y_types"
 )
 
-func CreateJSON(p *types.PackageInfo) error {
+func CreateJSON(p *y_types.PackageInfo) error {
 
 	// Marshal the PackageInfo struct into a pretty-printed JSON string.
 	jsonData, err := json.MarshalIndent(p, "", "    ")

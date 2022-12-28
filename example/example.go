@@ -5,7 +5,7 @@ import (
 	"yoda/example/texts"
 )
 
-var VAR string
+var EXAMPLE string = "mama"
 
 const EXAMPLE_1 = "example 1"
 const EXAMPLE_2 = "example 2"
