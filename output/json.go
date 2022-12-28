@@ -7,7 +7,7 @@ import (
 	"yoda/y_types"
 )
 
-func CreateJSON(p *y_types.PackageInfo) error {
+func CreateJSON(p *y_types.PackageInfo, outputName string) error {
 
 	// Marshal the PackageInfo struct into a pretty-printed JSON string.
 	jsonData, err := json.MarshalIndent(p, "", "    ")
@@ -15,15 +15,15 @@ func CreateJSON(p *y_types.PackageInfo) error {
 		return fmt.Errorf("error marshalling PackageInfo: %v", err)
 	}
 	// Check if the file already exists.
-	if _, err := os.Stat("package_info.json"); !os.IsNotExist(err) {
+	if _, err := os.Stat(outputName); !os.IsNotExist(err) {
 		// Delete the file if it exists.
-		if err := os.Remove("package_info.json"); err != nil {
+		if err := os.Remove(outputName); err != nil {
 			return fmt.Errorf("error deleting file: %v", err)
 		}
 	}
 
 	// Create a new file with the same name.
-	file, err := os.Create("package_info.json")
+	file, err := os.Create(outputName)
 	if err != nil {
 		return fmt.Errorf("error creating file: %v", err)
 	}

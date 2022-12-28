@@ -33,8 +33,11 @@ func text(str string) string {
 
 // this is text2 function
 func text2() string {
-	example()
-	return example2(texts.GetText())
+	var str string
+	if len(texts.GetText()) > 0 {
+		str = "yoda"
+	}
+	return example2(texts.GetText()) + str
 }
 
 func text1() {

@@ -1,0 +1,32 @@
+{
+    "Name": "example",
+    "NumberOfLines": 7,
+    "Imports": {
+        "fmt": {
+            "Name": "fmt",
+            "Path": "fmt",
+            "Size": 212331
+        }
+    },
+    "Functions": {
+        "sayHelloWorld": {
+            "Name": "sayHelloWorld",
+            "Calls": {
+                "Println": {
+                    "Name": "Println",
+                    "Where": {
+                        "File": "example/small.go",
+                        "Line": 6
+                    },
+                    "ImportPath": "fmt"
+                }
+            },
+            "Complexity": "0 (0 branches, 0 loops)",
+            "Pos": 32,
+            "Where": {
+                "File": "example/small.go",
+                "Line": 5
+            }
+        }
+    }
+}
